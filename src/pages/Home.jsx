@@ -2,6 +2,11 @@ import React from "react";
 import ThemeToggle from "../Components/ThemeToggle";
 import StarBackground from "../Components/StarBackground";
 import Navbar from "../Components/Navbar";
+import Hero from "../Components/Hero";
+import AboutMe from "../Components/AboutMe";
+import Skills from "../Components/Skills";
+import Projects from "../Components/Projects";
+import Contact from "../Components/Contact";
 
 const Home = () => {
   return (
@@ -15,6 +20,13 @@ const Home = () => {
       <Navbar />
 
       {/* Main Content */}
+      <main>
+        <Hero />
+        <AboutMe />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
 
       {/* Footer */}
     </div>
