@@ -11,19 +11,43 @@ const AboutMe = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
         <div className="space-y-6">
-          <h3 className="text-2xl font-semibold">
-            Passionate Web Developer & Tech Creator
+          <h3 className="text-xl font-semibold">
+            Software Engineer Intern • CS @ Georgia Tech
           </h3>
           <p className="text-muted-foreground">
-            With over 5 years of experience in web development, I specialize in
-            creative responsive, accessible, and performant web applications
-            using modern technologies.
+            I design and ship product features from sketch to production. At
+            Synchrony I worked on internal, analyst‑facing tools in a
+            cross‑functional team; keeping things secure, usable, and reliable.
+            I prototype in Figma and turn those ideas into polished React apps
+            backed by well‑structured services.
           </p>
           <p className="text-muted-foreground">
-            I'm passionate about creating elegant solutions to complex problems,
-            and I'm constantly learning new technologies and techniques to stay
-            at the forefront of the ever-evolving web landscape.
+            Beyond work, I’m very hands‑on by building a growth site for PS
+            &amp; Sons Construction, a real‑time CryptoWatch dashboard, and I’ve
+            been a finalist on two AI hackathon projects. When I’m not coding,
+            you’ll probably find me playing pickup soccer, practicing guitar,
+            chatting in Spanish with friends, or reading markets/finance. Clear
+            UX, measurable outcomes, and dependable delivery are my north stars.
           </p>
+          <div className="pt-2 flex flex-col justify-center">
+            <p className="text-medium font-medium font-semibold mb-2 text-muted-foreground/90">
+              Some Involvements & Hobbies:
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                SHPE @ Georgia Tech
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                GT iOS Club — Developer
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                Intramural Soccer
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                Spanish • Guitar • Investing
+              </span>
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
             <a href="#contact" className="cosmic-button">
               Get In Touch
@@ -43,10 +67,11 @@ const AboutMe = () => {
                 <Code className="h-6 w-6 text-primary" />
               </div>
               <div className="text-left">
-                <h4 className="font-semibold text-lg">Web Development</h4>
+                <h4 className="font-semibold text-lg">Product Engineering</h4>
                 <p className="text-muted-foreground">
-                  Creating responsive websites and web applications with modern
-                  frameworks.
+                  Own features end‑to‑end — ideation, prototyping,
+                  implementation, and iteration; with attention to performance,
+                  telemetry, and reliability.
                 </p>
               </div>
             </div>
@@ -57,10 +82,10 @@ const AboutMe = () => {
                 <User className="h-6 w-6 text-primary" />
               </div>
               <div className="text-left">
-                <h4 className="font-semibold text-lg">UI/UX </h4>
+                <h4 className="font-semibold text-lg">UI/UX</h4>
                 <p className="text-muted-foreground">
-                  Designing intuitive user interfaces and seamless user
-                  experiences.
+                  Design systems, accessibility, and rapid feedback loops to
+                  turn ideas into interfaces people enjoy using.
                 </p>
               </div>
             </div>
@@ -71,10 +96,10 @@ const AboutMe = () => {
                 <Briefcase className="h-6 w-6 text-primary" />
               </div>
               <div className="text-left">
-                <h4 className="font-semibold text-lg">Project Management</h4>
+                <h4 className="font-semibold text-lg">Agile & Collaboration</h4>
                 <p className="text-muted-foreground">
-                  Leading projects from conception to completion with agile
-                  methodologies
+                  SAFe® 6 Scrum Master — run standups, plan sprints, write
+                  tickets, and keep multi‑disciplinary teams moving.
                 </p>
               </div>
             </div>

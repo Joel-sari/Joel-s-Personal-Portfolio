@@ -5,7 +5,8 @@ const projects = [
   {
     id: 1,
     title: "PS and Sons Construction",
-    description: "A beautiful landing page app using React and Tailwind",
+    description:
+      "A business website designed to drive growth for PS & Sons Construction. Features a clean, modern UI that highlights core services, making it easy for clients to connect and request estimates. Enhanced local SEO and online presence have expanded client reach and improved discoverability beyond word-of-mouth.",
     image: "/projects/psandsonsproject.png",
     tags: ["React", "TailwindCSS", "Web3Forms"],
     demoUrl: "#",
@@ -14,7 +15,8 @@ const projects = [
   {
     id: 2,
     title: "CryptoWatch",
-    description: "A beautiful landing page app using React and Tailwind",
+    description:
+      "A real-time cryptocurrency dashboard that tracks prices, volume, and market trends. Designed for clarity and usability, it presents complex data in an accessible format, empowering users to stay informed and make timely decisions.",
     image: "/projects/cryptowatchproject.png",
     tags: ["React.js", "CSS", "CoinGecko API"],
     demoUrl: "#",
@@ -23,7 +25,8 @@ const projects = [
   {
     id: 3,
     title: "Investment Calculator",
-    description: "A beautiful landing page app using React and Tailwind",
+    description:
+      "A tool that helps users visualize the growth of their investments over time. By making financial projections easy to understand, it supports better decision-making and empowers users to plan for their financial goals.",
     image: "/projects/investmentcalculatorproject.png",
     tags: ["React", "CSS"],
     demoUrl: "#",
