@@ -189,26 +189,40 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            <div className="pt-8">
+            <div className="pt-6">
               <h4 className="font-medium mb-4">Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
                 <a
                   href="https://www.linkedin.com/in/joel-sari/"
                   target="_blank"
+                  className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                  aria-label="LinkedIn"
                 >
-                  <Linkedin />
+                  <Linkedin className="h-6 w-6 text-primary" />
                 </a>
-                <a href="https://www.instagram.com/joelsariz/" target="_blank">
-                  <Instagram />
+                <a
+                  href="https://www.instagram.com/joelsariz/"
+                  target="_blank"
+                  className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-6 w-6 text-primary" />
                 </a>
-                <a href="https://www.youtube.com/@Joel-Sari" target="_blank">
-                  <Youtube />
+                <a
+                  href="https://www.youtube.com/@Joel-Sari"
+                  target="_blank"
+                  className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="h-6 w-6 text-primary" />
                 </a>
                 <a
                   href="https://www.facebook.com/helloitsmejoel/"
                   target="_blank"
+                  className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                  aria-label="Facebook"
                 >
-                  <Facebook />
+                  <Facebook className="h-6 w-6 text-primary" />
                 </a>
               </div>
             </div>
