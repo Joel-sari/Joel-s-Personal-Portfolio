@@ -49,7 +49,7 @@ const projects = [
     image: "/projects/moviestoreproject.png",
     tags: ["Django", "Python", "SQLite", "Bootstrap CSS"],
     demoUrl: "https://joelsari.pythonanywhere.com/",
-    youtubeUrl: "",
+    youtubeUrl: "#",
     gitHubUrl: "https://github.com/Joel-sari/JoelsMovieStore",
     date: "September 2025",
     sortDate: "2025-09-01",
