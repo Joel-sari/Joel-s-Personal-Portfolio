@@ -1,48 +1,40 @@
-import { Moon, Sun } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { cn } from "../lib/util";
+import { Sun, Moon } from "lucide-react";
 
 const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
+  // Default to DARK if nothing is saved
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    }
+    const saved = localStorage.getItem("theme");
+    const shouldDark = saved ? saved === "dark" : true; // default dark
+    document.documentElement.classList.toggle("dark", shouldDark);
+    setIsDarkMode(shouldDark);
   }, []);
+
   const toggleTheme = () => {
-    if (isDarkMode) {
-      setIsDarkMode(false);
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
-    }
+    const next = !isDarkMode;
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
+    setIsDarkMode(next);
   };
 
   return (
     <button
       onClick={toggleTheme}
-      className={cn(
-        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-        "focus:outline-hidden",
-        "hidden"
-      )}
+      aria-label="Toggle theme"
+      className={
+        // Keep it visually hidden by default as you wanted earlier; remove `hidden` if you want it visible
+        "hidden fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300 focus:outline-none"
+      }
     >
-      {" "}
       {isDarkMode ? (
         <Sun className="h-6 w-6 text-yellow-300" />
       ) : (
-        <Moon className=" h-6 w-6 text-blue-900" />
+        <Moon className="h-6 w-6 text-blue-900" />
       )}
     </button>
   );
 };
+
 export default ThemeToggle;
