@@ -70,7 +70,7 @@
 
     --card: 0 0% 100%;
 
-    --primary: 220 70% 55%;
+    --primary: 221 83% 53%; /* space-blue */
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
@@ -81,7 +81,7 @@
 
     --card: 222 47% 8%;
 
-    --primary: 250 65% 65%;
+    --primary: 221 83% 60%;
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
@@ -112,7 +112,7 @@
 @utility text-glow {
   /*apply is when you wanna add tailwind styling but in a a regular css manner (meaning like a css file) NOTE: apply only works for one line!*/
   @apply relative;
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+  text-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
 }
 
 @utility card-hover {

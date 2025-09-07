@@ -13,7 +13,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,11 +22,21 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
   return (
     /* Allows for a transparent background for the navbar when scrolled down  */
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
+        "fixed top-0 inset-x-0 w-full z-[1000] transition-all duration-300",
         isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
       )}
     >
@@ -36,7 +46,7 @@ const Navbar = () => {
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> Joel Sari</span>{" "}
+            <span className="text-glow text-foreground"> Joel Sari's</span>{" "}
             Portfolio
           </span>
         </a>
@@ -56,26 +66,29 @@ const Navbar = () => {
         {/*Mobile version of the Navbar*/}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
+          className={cn(
+            "md:hidden p-2 text-foreground z-[1002]",
+            isMenuOpen && "fixed top-4 right-4"
+          )}
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
+            "fixed inset-0 top-0 left-0 h-screen w-screen bg-background/95 backdrop-blur-md z-[1001] flex items-center justify-center overflow-y-auto",
+            "transition-opacity duration-300 md:hidden",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
+          <div className="w-full max-w-md px-8 py-12 flex flex-col items-center text-center space-y-10 text-3xl font-semibold">
             {navItems.map((item, key) => (
               <a
                 key={key}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="block text-foreground/90 hover:text-primary transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

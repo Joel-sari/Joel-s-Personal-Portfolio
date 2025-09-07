@@ -12,9 +12,9 @@ import Footer from "../Components/Footer";
 const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/*Theme Toggle (light to dark mode) */}
-      <ThemeToggle />
+      {/*Theme Toggle (light to dark mode)  */}
 
+      <ThemeToggle />
       {/* Background effects (starts and meteor showers) */}
       <StarBackground />
       {/* NavBar */}

@@ -16,10 +16,10 @@ const AboutMe = () => {
           </h3>
           <p className="text-muted-foreground">
             I design and ship product features from sketch to production. At
-            Synchrony I worked on internal, analyst‑facing tools in a
-            cross‑functional team; keeping things secure, usable, and reliable.
-            I prototype in Figma and turn those ideas into polished React apps
-            backed by well‑structured services.
+            Synchrony I worked on internal, analyst‑facing tools in the Credit
+            Technology Strategy Team; keeping things secure, usable, and
+            reliable. I prototype in Figma and turn those ideas into polished
+            React apps backed by well‑structured services.
           </p>
           <p className="text-muted-foreground">
             Beyond work, I’m very hands‑on by building a growth site for PS
@@ -44,7 +44,19 @@ const AboutMe = () => {
                 Intramural Soccer
               </span>
               <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
-                Spanish • Guitar • Investing
+                Spanish Music
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                Playing Guitar
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                Investing
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                Gym & Fitness
+              </span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                Coding
               </span>
             </div>
           </div>

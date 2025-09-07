@@ -145,8 +145,8 @@ const Contact = () => {
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
             <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="p-3 rounded-full bg-primary/10 mx-auto">
                   <Mail className="h-6 w-6 text-primary " />
                 </div>
                 <div>
@@ -159,8 +159,8 @@ const Contact = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="p-3 rounded-full bg-primary/10 mx-auto">
                   <Phone className="h-6 w-6 text-primary " />
                 </div>
                 <div>
@@ -173,8 +173,8 @@ const Contact = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div className="p-3 rounded-full bg-primary/10 mx-auto">
                   <MapPin className="h-6 w-6 text-primary " />
                 </div>
                 <div>
