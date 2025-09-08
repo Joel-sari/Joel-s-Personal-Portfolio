@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Github, Youtube } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, X, Youtube } from "lucide-react";
 import React, { useState } from "react";
 
 const projects = [
@@ -204,21 +204,15 @@ const Projects = () => {
             role="dialog"
             aria-modal="true"
           >
-            <div className="w-full max-w-2xl rounded-lg bg-card text-foreground shadow-lg overflow-hidden border-2 border-primary shadow-[0_0_20px_rgba(37,99,235,0.6)]">
-              <div className="relative h-48 w-full overflow-hidden">
+            <div className="w-full max-w-2xl rounded-lg bg-card text-foreground shadow-lg overflow-hidden border-2 border-primary shadow-[0_0_20px_rgba(37,99,235,0.6)] relative max-h-[90vh] overflow-y-auto">
+              <div className="relative h-40 md:h-48 w-full overflow-hidden">
                 <img
                   src={openProject.image}
                   alt={openProject.title}
                   className="w-full h-full object-cover"
                 />
-                <button
-                  className="absolute top-3 right-3 px-4 py-2 rounded bg-red-700 hover:bg-red-800 text-white text-sm md:text-base shadow"
-                  onClick={() => setOpenProject(null)}
-                >
-                  Close
-                </button>
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-4 pb-16 md:pb-3">
                 <h3 className="text-2xl font-semibold">{openProject.title}</h3>
                 <p className="text-sm text-muted-foreground">
                   {openProject.longDescription || openProject.description}
@@ -236,7 +230,7 @@ const Projects = () => {
                     </div>
                   )}
 
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap items-center gap-3 pt-2">
                   {/* Live demo button or disabled placeholder */}
                   {openProject.demoUrl ? (
                     <a
@@ -284,6 +278,13 @@ const Projects = () => {
                       Video coming soon
                     </span>
                   )}
+
+                  <button
+                    className="ml-auto order-last md:order-none w-10 h-10 flex items-center justify-center rounded-full bg-red-700 hover:bg-red-800 text-white shadow"
+                    onClick={() => setOpenProject(null)}
+                  >
+                    <X />
+                  </button>
                 </div>
               </div>
             </div>
