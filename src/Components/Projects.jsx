@@ -46,10 +46,18 @@ const projects = [
     title: "Movie Store",
     description:
       "A feature-rich movie e-commerce platform built with Django, showcasing user authentication, dynamic content management, and an integrated shopping cart/checkout system. Users can browse movies, view details, manage their carts, and complete purchases with automatically generated orders.",
+    longDescription:
+      "GT Movie Store is a full‑stack Django web app I built for a course to practice real e‑commerce patterns. It includes authentication, session‑based carts, order generation, and deployment on PythonAnywhere. This project let me solidify Django’s model‑view‑template flow and how to ship changes to production.",
+    process: [
+      "Scoped features into auth, catalog, cart, and orders to ship incrementally",
+      "Debugged responsiveness issues (Safari/Chrome) and standardized image ratios",
+      "Set up migrations/fixtures, static collection, and a deployment workflow",
+      "Documented known trade‑offs and next steps (payments, search, admin polish)",
+    ],
     image: "/projects/moviestoreproject.png",
-    tags: ["Django", "Python", "SQLite", "Bootstrap CSS"],
+    tags: ["Django", "SQLite", "Bootstrap"],
     demoUrl: "https://joelsari.pythonanywhere.com/",
-    youtubeUrl: "#",
+    youtubeUrl: "https://www.youtube.com/watch?v=zOADQZK_7g4",
     gitHubUrl: "https://github.com/Joel-sari/JoelsMovieStore",
     date: "September 2025",
     sortDate: "2025-09-01",
@@ -70,6 +78,11 @@ const projects = [
 ];
 const Projects = () => {
   const [sortBy, setSortBy] = useState("date"); // "date" | "title"
+  const [openProject, setOpenProject] = useState(null); // stores the project to show in modal or null
+
+  const truncate = (text, n = 140) =>
+    text && text.length > n ? text.slice(0, n).trim() + "…" : text;
+
   const sortedProjects = [...projects].sort((a, b) => {
     if (sortBy === "title") return a.title.localeCompare(b.title);
     return new Date(b.sortDate) - new Date(a.sortDate); // default: newest first
@@ -125,22 +138,14 @@ const Projects = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-1 ">{project.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
+                  {truncate(project.description)}
                 </p>
-                {(!project.demoUrl || !project.youtubeUrl) && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {!project.demoUrl && (
-                      <span className="px-2 py-0.5 text-[11px] rounded-full bg-secondary text-secondary-foreground border border-border/70">
-                        Demo coming soon
-                      </span>
-                    )}
-                    {!project.youtubeUrl && (
-                      <span className="px-2 py-0.5 text-[11px] rounded-full bg-secondary text-secondary-foreground border border-border/70">
-                        Video coming soon
-                      </span>
-                    )}
-                  </div>
-                )}
+                <button
+                  className="text-primary text-sm font-medium hover:underline"
+                  onClick={() => setOpenProject(project)}
+                >
+                  Learn more
+                </button>
                 <div className="flex justify-between items-center">
                   <div className="flex space-x-3">
                     {/* Demo link (deployed app) */}
@@ -151,11 +156,11 @@ const Projects = () => {
                         target="_blank"
                         aria-label="Open live demo"
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={30} />
                       </a>
                     ) : (
                       <span className="text-foreground/40" aria-disabled="true">
-                        <ExternalLink size={20} />
+                        <ExternalLink size={30} />
                       </span>
                     )}
 
@@ -166,7 +171,7 @@ const Projects = () => {
                       target="_blank"
                       aria-label="Open GitHub repository"
                     >
-                      <Github size={20} />
+                      <Github size={30} />
                     </a>
 
                     {/* YouTube demo video */}
@@ -177,11 +182,11 @@ const Projects = () => {
                         target="_blank"
                         aria-label="Watch demo video"
                       >
-                        <Youtube size={20} />
+                        <Youtube size={30} />
                       </a>
                     ) : (
                       <span className="text-foreground/40" aria-disabled="true">
-                        <Youtube size={20} />
+                        <Youtube size={30} />
                       </span>
                     )}
                   </div>
@@ -193,6 +198,97 @@ const Projects = () => {
             </div>
           ))}
         </div>
+        {openProject && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="w-full max-w-2xl rounded-lg bg-card text-foreground shadow-lg overflow-hidden border-2 border-primary shadow-[0_0_20px_rgba(37,99,235,0.6)]">
+              <div className="relative h-48 w-full overflow-hidden">
+                <img
+                  src={openProject.image}
+                  alt={openProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  className="absolute top-3 right-3 px-4 py-2 rounded bg-red-700 hover:bg-red-800 text-white text-sm md:text-base shadow"
+                  onClick={() => setOpenProject(null)}
+                >
+                  Close
+                </button>
+              </div>
+              <div className="p-6 space-y-4">
+                <h3 className="text-2xl font-semibold">{openProject.title}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {openProject.longDescription || openProject.description}
+                </p>
+
+                {Array.isArray(openProject.process) &&
+                  openProject.process.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-2">Process</h4>
+                      <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+                        {openProject.process.map((step, i) => (
+                          <li key={i}>{step}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                <div className="flex flex-wrap gap-3 pt-2">
+                  {/* Live demo button or disabled placeholder */}
+                  {openProject.demoUrl ? (
+                    <a
+                      className="cosmic-button inline-flex items-center gap-2"
+                      href={openProject.demoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Live demo <ExternalLink size={16} />
+                    </a>
+                  ) : (
+                    <span
+                      className="cosmic-button inline-flex items-center gap-2 opacity-50 cursor-not-allowed select-none"
+                      aria-disabled="true"
+                    >
+                      Demo coming soon
+                    </span>
+                  )}
+
+                  {/* GitHub always enabled */}
+                  <a
+                    className="cosmic-button inline-flex items-center gap-2"
+                    href={openProject.gitHubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub <Github size={16} />
+                  </a>
+
+                  {/* Video button or disabled placeholder */}
+                  {openProject.youtubeUrl ? (
+                    <a
+                      className="cosmic-button inline-flex items-center gap-2"
+                      href={openProject.youtubeUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Video <Youtube size={16} />
+                    </a>
+                  ) : (
+                    <span
+                      className="cosmic-button inline-flex items-center gap-2 opacity-50 cursor-not-allowed select-none"
+                      aria-disabled="true"
+                    >
+                      Video coming soon
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="text-center mt-12">
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
