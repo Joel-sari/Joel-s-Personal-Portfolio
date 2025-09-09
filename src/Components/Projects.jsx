@@ -8,7 +8,7 @@ const projects = [
     description:
       "A business website designed to drive growth for PS & Sons Construction. Features a clean, modern UI that highlights core services, making it easy for clients to connect and request estimates. Enhanced local SEO and online presence have expanded client reach and improved discoverability beyond word-of-mouth.",
     image: "/projects/psandsonsproject.png",
-    tags: ["React", "TailwindCSS", "Web3Forms"],
+    tags: ["React.js", "TailwindCSS", "Web3Forms"],
     demoUrl: "",
     youtubeUrl: "",
     gitHubUrl: "https://github.com/Joel-sari/PS-SonsConstructionLLC",
@@ -34,7 +34,7 @@ const projects = [
     description:
       "A tool that helps users visualize the growth of their investments over time. By making financial projections easy to understand, it supports better decision-making and empowers users to plan for their financial goals.",
     image: "/projects/investmentcalculatorproject.png",
-    tags: ["React", "CSS"],
+    tags: ["React.js", "CSS"],
     demoUrl: "",
     youtubeUrl: "",
     gitHubUrl: "https://github.com/Joel-sari/InvestmentCalculator",
@@ -55,7 +55,7 @@ const projects = [
       "Documented known trade‑offs and next steps (payments, search, admin polish)",
     ],
     image: "/projects/moviestoreproject.png",
-    tags: ["Django", "SQLite", "Bootstrap"],
+    tags: ["Django", "SQLite", "BootstrapCSS", "Python"],
     demoUrl: "https://joelsari.pythonanywhere.com/",
     youtubeUrl: "https://www.youtube.com/watch?v=zOADQZK_7g4",
     gitHubUrl: "https://github.com/Joel-sari/JoelsMovieStore",
@@ -66,22 +66,49 @@ const projects = [
     id: 5,
     title: "Joel's Personal Portfolio",
     description:
-      "custom-built portfolio website designed with React and TailwindCSS, featuring smooth animations and a responsive layout across all devices. It not only showcases my projects but also highlights his skills, background, and professional journey. The site includes an integrated contact form, links to social platforms, and a dedicated skills section.",
+      "A custom-built portfolio website designed with React and TailwindCSS, featuring smooth animations and a responsive layout across all devices. It not only showcases my projects but also highlights his skills, background, and professional journey. The site includes an integrated contact form, links to social platforms, and a dedicated skills section.",
     image: "/projects/JoelSariPortfolioProject.png",
-    tags: ["React", "TailwindCSS", "Web3Forms"],
-    demoUrl: "",
+    tags: ["React.js", "TailwindCSS", "Web3Forms"],
+    demoUrl: "#",
     youtubeUrl: "",
     gitHubUrl: "https://github.com/Joel-sari/Joel-s-Personal-Portfolio/",
     date: "September 2025",
     sortDate: "2025-09-01",
   },
+  {
+    id: 6,
+    title: "SHPE Georgia Tech Member Portal",
+    description:
+      "Chapter website and member portal used by 500+ students — events & RSVPs, membership, admin tools, and sponsor-facing pages.",
+    longDescription:
+      "Collaborative project built by the SHPE GT IT team. The portal supports membership management, event RSVPs, admin-only workflows, and sponsor engagement. I contributed UI flows, data wiring, and feature enhancements, focusing on reliability, clear UX, and smooth admin operations.",
+    contributions: [
+      "Built/updated member flows (RSVP, profile, announcements) and admin dashboard views",
+      "Wired data reads/writes and media storage; tuned auth/roles with the team",
+      "Polished UX/accessibility, fixed bugs, and coordinated small releases",
+    ],
+    image: "/projects/SHPEGT.png",
+    tags: ["React.ts", "Astro", "Firebase", "AWS S3", "TailwindCSS"],
+    demoUrl: "https://gt-shpe.com/",
+    youtubeUrl: "",
+    gitHubUrl: "",
+    privateRepo: true,
+    collaboration: "Team",
+    role: "IT Chair (Developer)",
+    org: "SHPE Georgia Tech",
+    date: "September 2025",
+    sortDate: "2025-09-02",
+  },
 ];
 const Projects = () => {
   const [sortBy, setSortBy] = useState("date"); // "date" | "title"
   const [openProject, setOpenProject] = useState(null); // stores the project to show in modal or null
-
-  const truncate = (text, n = 140) =>
-    text && text.length > n ? text.slice(0, n).trim() + "…" : text;
+  const [toast, setToast] = useState(null);
+  const showToast = (msg) => {
+    setToast(msg);
+    clearTimeout(window.__portfolioToastTimer);
+    window.__portfolioToastTimer = setTimeout(() => setToast(null), 1600);
+  };
 
   const sortedProjects = [...projects].sort((a, b) => {
     if (sortBy === "title") return a.title.localeCompare(b.title);
@@ -116,7 +143,13 @@ const Projects = () => {
           {sortedProjects.map((project, key) => (
             <div
               key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover cursor-pointer"
+              onClick={() => setOpenProject(project)}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && setOpenProject(project)
+              }
+              role="button"
+              tabIndex={0}
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -126,28 +159,75 @@ const Projects = () => {
                 />
               </div>
               <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs font-medium border-2 border-primary rounded-full bg-secondary text-secondary-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div
+                  className="mb-4 -mx-2 overflow-x-auto scrollbar-none [&::-webkit-scrollbar]:hidden"
+                  role="region"
+                  aria-label="Technology tags (scroll for more)"
+                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                >
+                  <div className="inline-flex gap-2 px-2 whitespace-nowrap">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 text-xs font-medium border-2 border-primary rounded-full bg-secondary text-secondary-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-1 ">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {truncate(project.description)}
+                <div
+                  className="mb-1 -mx-2 overflow-x-auto scrollbar-none [&::-webkit-scrollbar]:hidden"
+                  role="region"
+                  aria-label="Project title (scroll if truncated)"
+                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                >
+                  <h3 className="text-xl font-semibold px-2 whitespace-nowrap">
+                    {project.title}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                  {project.description}
                 </p>
                 <button
-                  className="text-primary text-sm font-medium hover:underline"
-                  onClick={() => setOpenProject(project)}
+                  className="text-primary text-sm font-medium hover:underline mb-6"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenProject(project);
+                  }}
                 >
                   Learn more
                 </button>
                 <div className="flex justify-between items-center">
                   <div className="flex space-x-3">
+                    {/* GitHub link (always leftmost) */}
+                    {project.gitHubUrl ? (
+                      <a
+                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                        href={project.gitHubUrl}
+                        target="_blank"
+                        aria-label="Open GitHub repository"
+                        title="Open GitHub repository"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Github size={30} />
+                      </a>
+                    ) : (
+                      <span
+                        className="text-foreground/40 select-none cursor-not-allowed"
+                        aria-disabled="true"
+                        tabIndex={-1}
+                        style={{ pointerEvents: "none" }}
+                        onClick={(e) => e.stopPropagation()}
+                        title={
+                          project.privateRepo
+                            ? "Private repository"
+                            : "GitHub unavailable"
+                        }
+                      >
+                        <Github size={30} />
+                      </span>
+                    )}
                     {/* Demo link (deployed app) */}
                     {project.demoUrl ? (
                       <a
@@ -155,25 +235,32 @@ const Projects = () => {
                         href={project.demoUrl}
                         target="_blank"
                         aria-label="Open live demo"
+                        title="Open live demo"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <ExternalLink size={30} />
                       </a>
                     ) : (
-                      <span className="text-foreground/40" aria-disabled="true">
-                        <ExternalLink size={30} />
-                      </span>
+                      <div
+                        className="relative inline-block"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          showToast("Demo unavailable");
+                        }}
+                      >
+                        <span
+                          className="text-foreground/40 select-none peer"
+                          aria-disabled="true"
+                          role="button"
+                          tabIndex={-1}
+                        >
+                          <ExternalLink size={30} />
+                        </span>
+                        <span className="pointer-events-none absolute -top-10 left-8 sm:left-1/2 sm:-translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 text-white text-sm px-3 py-1.5 shadow-lg opacity-0 peer-hover:opacity-100 peer-focus:opacity-100 transition-opacity duration-150 z-10">
+                          Demo unavailable
+                        </span>
+                      </div>
                     )}
-
-                    {/* GitHub link (always present) */}
-                    <a
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                      href={project.gitHubUrl}
-                      target="_blank"
-                      aria-label="Open GitHub repository"
-                    >
-                      <Github size={30} />
-                    </a>
-
                     {/* YouTube demo video */}
                     {project.youtubeUrl ? (
                       <a
@@ -181,13 +268,31 @@ const Projects = () => {
                         href={project.youtubeUrl}
                         target="_blank"
                         aria-label="Watch demo video"
+                        title="Watch demo video"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <Youtube size={30} />
                       </a>
                     ) : (
-                      <span className="text-foreground/40" aria-disabled="true">
-                        <Youtube size={30} />
-                      </span>
+                      <div
+                        className="relative inline-block"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          showToast("Video unavailable");
+                        }}
+                      >
+                        <span
+                          className="text-foreground/40 select-none peer"
+                          aria-disabled="true"
+                          role="button"
+                          tabIndex={-1}
+                        >
+                          <Youtube size={30} />
+                        </span>
+                        <span className="pointer-events-none absolute -top-10 left-8 sm:left-1/2 sm:-translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 text-white text-sm px-3 py-1.5 shadow-lg opacity-0 peer-hover:opacity-100 peer-focus:opacity-100 transition-opacity duration-150 z-10">
+                          Video unavailable
+                        </span>
+                      </div>
                     )}
                   </div>
                   <span className="italic text-xs text-muted-foreground ">
@@ -214,11 +319,38 @@ const Projects = () => {
               </div>
               <div className="p-6 space-y-4 pb-16 md:pb-3">
                 <h3 className="text-2xl font-semibold">{openProject.title}</h3>
+                {(openProject.org ||
+                  openProject.collaboration ||
+                  openProject.role) && (
+                  <p className="text-xs text-muted-foreground -mt-2">
+                    {openProject.org ? `${openProject.org}` : ""}
+                    {openProject.org &&
+                    (openProject.collaboration || openProject.role)
+                      ? " • "
+                      : ""}
+                    {openProject.collaboration
+                      ? `${openProject.collaboration} project`
+                      : ""}
+                    {openProject.collaboration && openProject.role ? " • " : ""}
+                    {openProject.role ? `Role: ${openProject.role}` : ""}
+                  </p>
+                )}
                 <p className="text-sm text-muted-foreground">
                   {openProject.longDescription || openProject.description}
                 </p>
 
-                {Array.isArray(openProject.process) &&
+                {Array.isArray(openProject.contributions) &&
+                openProject.contributions.length > 0 ? (
+                  <div>
+                    <h4 className="font-semibold mb-2">What I did</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+                      {openProject.contributions.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  Array.isArray(openProject.process) &&
                   openProject.process.length > 0 && (
                     <div>
                       <h4 className="font-semibold mb-2">Process</h4>
@@ -228,11 +360,12 @@ const Projects = () => {
                         ))}
                       </ul>
                     </div>
-                  )}
+                  )
+                )}
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
-                  {/* Live demo button or disabled placeholder */}
-                  {openProject.demoUrl ? (
+                  {/* Live demo button - show only if available */}
+                  {openProject.demoUrl && (
                     <a
                       className="cosmic-button inline-flex items-center gap-2"
                       href={openProject.demoUrl}
@@ -241,27 +374,22 @@ const Projects = () => {
                     >
                       Live demo <ExternalLink size={16} />
                     </a>
-                  ) : (
-                    <span
-                      className="cosmic-button inline-flex items-center gap-2 opacity-50 cursor-not-allowed select-none"
-                      aria-disabled="true"
-                    >
-                      Demo coming soon
-                    </span>
                   )}
 
-                  {/* GitHub always enabled */}
-                  <a
-                    className="cosmic-button inline-flex items-center gap-2"
-                    href={openProject.gitHubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    GitHub <Github size={16} />
-                  </a>
+                  {/* GitHub button - show only if avaialble */}
+                  {openProject.gitHubUrl && (
+                    <a
+                      className="cosmic-button inline-flex items-center gap-2"
+                      href={openProject.gitHubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GitHub <Github size={16} />
+                    </a>
+                  )}
 
-                  {/* Video button or disabled placeholder */}
-                  {openProject.youtubeUrl ? (
+                  {/* Video button - show only if available */}
+                  {openProject.youtubeUrl && (
                     <a
                       className="cosmic-button inline-flex items-center gap-2"
                       href={openProject.youtubeUrl}
@@ -270,13 +398,6 @@ const Projects = () => {
                     >
                       Video <Youtube size={16} />
                     </a>
-                  ) : (
-                    <span
-                      className="cosmic-button inline-flex items-center gap-2 opacity-50 cursor-not-allowed select-none"
-                      aria-disabled="true"
-                    >
-                      Video coming soon
-                    </span>
                   )}
 
                   <button
@@ -301,6 +422,11 @@ const Projects = () => {
           </a>
         </div>
       </div>
+      {toast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] bg-gray-900 text-white text-sm px-3 py-2 rounded shadow-lg">
+          {toast}
+        </div>
+      )}
     </section>
   );
 };
