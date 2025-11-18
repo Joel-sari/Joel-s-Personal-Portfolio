@@ -99,6 +99,28 @@ const projects = [
     date: "September 2025",
     sortDate: "2025-09-02",
   },
+  {
+    id: 7,
+    title: "CareerHub",
+    description:
+      "CareerHub enables recruiters to post jobs, review applicants, and visualize candidate interest. Job seekers can browse personalized recommendations, track application statuses, and manage profiles in a clean, responsive UI.",
+    longDescription:
+      "CareerHub is a full-stack platform I built to streamline the hiring workflow for recruiters and job seekers. It features dynamic dashboards, real-time maps, role-based authentication, job recommendations, and an elegant UI powered by React + TailwindCSS. On the backend, Django REST Framework handles all API endpoints for jobs, applications, and user profiles. The system supports job posting, resume submissions, an applicant directory, recruiter pipelines, and interactive map views of postings and candidate clusters.",
+    contributions: [
+      "Implemented recruiter and job-seeker dashboards with polished, modern interfaces",
+      "Built the interactive job map using Google Maps API with dynamic pin rendering",
+      "Developed job posting, application tracking, and candidate directory workflows",
+      "Created REST API endpoints for jobs, applications, messaging, and profiles",
+      "Improved user experience with responsive layouts, hover interactions, and reusable UI components",
+    ],
+    image: "/projects/CareerHubProject.png",
+    tags: ["React.js", "TailwindCSS", "Django", "REST API", "Google Maps API"],
+    demoUrl: "https://careerhub-joelsari.pythonanywhere.com",
+    youtubeUrl: "",
+    gitHubUrl: "https://github.com/Joel-sari/CareerHub",
+    date: "November 2025",
+    sortDate: "2025-11-18",
+  },
 ];
 const Projects = () => {
   const [sortBy, setSortBy] = useState("date"); // "date" | "title"
