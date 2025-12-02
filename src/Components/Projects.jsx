@@ -118,8 +118,44 @@ const projects = [
     demoUrl: "https://careerhub-joelsari.pythonanywhere.com",
     youtubeUrl: "",
     gitHubUrl: "https://github.com/Joel-sari/CareerHub",
+    role: "Team Lead & Product Owner",
+    collaboration: "Team",
+    org: "",
     date: "November 2025",
     sortDate: "2025-11-18",
+  },
+  {
+    id: 8,
+    title: "Reverie",
+    description:
+      "An award-winning iOS app that transforms user dreams into interactive DreamCards using Apple’s on-device Foundation Model and CoreML Stable Diffusion. Features dream logging, AI-assisted dream completion, and a dynamic dreamscape visualization.",
+    longDescription:
+      "Reverie helps users capture dreams instantly and explore deeper meaning through AI-driven insights. I contributed to dream logging features, DreamCard generation animations, CoreML image generation, and the character unlock system. Reverie won Best Design and Best App at Georgia Tech’s iOS Club Demo Day.",
+    contributions: [
+      "Engineered the DreamCard UI using SwiftUI’s layout system with layered Z‑stacks, gradients, and dynamic geometry effects",
+      "Implemented custom 3D flip animations using rotation effects, spring animations, and state‑driven view transitions",
+      "Developed physics‑inspired floating and flickable sticker interactions using gesture handlers, interpolation, and velocity-based animations",
+      "Built a persistent pinning system backed by UserDefaults with real‑time UI state synchronization across multiple views",
+      "Optimized the sticker grid rendering by implementing pin‑priority sorting logic and reducing unnecessary SwiftUI recompositions",
+    ],
+    image: "/projects/reverieproject.jpg",
+    tags: [
+      "SwiftUI",
+      "CoreML",
+      "Stable Diffusion",
+      "Firebase",
+      "Foundation Model",
+    ],
+    demoUrl: "",
+    youtubeUrl:
+      "https://www.linkedin.com/feed/update/urn:li:activity:7398080601938939904/",
+    gitHubUrl: "",
+    privateRepo: true,
+    collaboration: "Team",
+    role: "iOS Developer",
+    org: "GT iOS Club",
+    date: "November 2025",
+    sortDate: "2025-11-28",
   },
 ];
 const Projects = () => {
