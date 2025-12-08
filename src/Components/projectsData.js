@@ -187,4 +187,30 @@ export const projects = [
     collaboration: "Team",
     role: "Technical Lead",
   },
+  {
+    id: 10,
+    title: "Terminal Snake Game (C)",
+    description:
+      "A fully custom Snake game built in pure C with real‑time keyboard input, Unicode graphics, ANSI rendering, Hard Mode obstacles, Wrap Mode, smooth game‑over flow, and dynamic speed scaling.",
+    longDescription:
+      "A systems‑level C project showcasing low‑level input handling, terminal control using ANSI escape codes, game loop architecture, and memory‑safe board rendering. Features include live movement without the Enter key (raw mode), UTF‑8 graphics (█ ● ○ ◆), dynamic obstacle generation, Wrap Mode teleportation, Hard Mode with difficulty scaling, pause/restart controls, and a polished UI flow across start, gameplay, pause, and game‑over screens.",
+    contributions: [
+      "Implemented real‑time input using termios raw mode for instant movement",
+      "Architected the full game loop (input → update → physics → render)",
+      "Developed ANSI‑based rendering for flicker‑free terminal animations",
+      "Built Hard Mode with dynamic obstacle generation and collision detection",
+      "Added Wrap Mode with coordinate‑wrapping edge behavior",
+      "Created smooth pause and game‑over UI screens with restart flow",
+      "Designed all board visuals using UTF‑8 characters for a clean aesthetic",
+    ],
+    image: "/projects/snakegameproject.png",
+    tags: ["C", "ANSI", "Systems Programming", "Terminal"],
+    demoUrl: "",
+    youtubeUrl: "https://youtu.be/zkPb9qJdsOI",
+    gitHubUrl: "https://github.com/Joel-sari/snake-game.git", // replace with final repo URL
+    date: "December 2025",
+    sortDate: "2025-12-15",
+    collaboration: "Solo",
+    role: "Developer",
+  },
 ];
