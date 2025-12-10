@@ -146,7 +146,7 @@ export const projects = [
     demoUrl: "",
     youtubeUrl:
       "https://www.linkedin.com/feed/update/urn:li:activity:7398080601938939904/",
-    gitHubUrl: "",
+    gitHubUrl: "https://github.com/gtiosclub/Reverie",
     privateRepo: true,
     collaboration: "Team",
     role: "iOS Developer",
